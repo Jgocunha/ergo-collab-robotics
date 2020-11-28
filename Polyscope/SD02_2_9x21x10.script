@@ -1,0 +1,384 @@
+def SD02_2_9x21x10():
+  set_standard_analog_input_domain(0, 1)
+  set_standard_analog_input_domain(1, 1)
+  set_tool_analog_input_domain(0, 1)
+  set_tool_analog_input_domain(1, 1)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_input_actions_to_default()
+  set_tool_communication(False, 115200, 0, 1, 1.5, 3.5)
+  set_tool_output_mode(0)
+  set_tool_digital_output_mode(0, 1)
+  set_tool_digital_output_mode(1, 1)
+  set_tool_voltage(0)
+  set_safety_mode_transition_hardness(1)
+  set_gravity([0.0, 0.0, 9.82])
+  set_tcp(p[0.075,-0.1285,0.103,-3.1416,0.0,0.0])
+  set_payload(1.8,[0.0,0.0,0.05])
+  global lineRequest=False
+  global lineB=False
+  global lineA=False
+  global Pallet_1_cnt=1
+  global Baseboard=p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102]
+  global BaseboardWorks=p[-1.038624934433914,0.12241197532680997,-0.2824320857545593,1.7670952367200611E-4,-1.2741180860621147E-4,-1.800477157741698]
+  global LeftConvo=p[-0.49079894649209443,-0.9067026981284079,0.024305012641813353,3.242434390168306E-5,-1.85268802463914E-5,0.6949663314758117]
+  global RightConvo=p[-0.4489526578848889,0.9149900285319862,0.01751744265259368,0.003513528551002266,6.506948398224681E-4,2.446307217473749]
+  global Table=p[0.26241824701519256,1.0186760104146113,0.017817350426036993,-0.001000423007796251,0.014877107498314404,-3.1095546353078984]
+  global referencePoint=p[-0.5957961512798705,-0.46539788584860675,-0.11877510713940027,2.4763965160656354E-4,0.004043860075619172,1.5882179367242775]
+  global separatorPoint=p[0.0,0.0,0.0,0.0,0.0,0.0]
+  # begin: URCap Installation Node
+  #   Source: Remote TCP, 1.1.42.build150, Universal Robots A/S
+  #   Type: Remote TCP
+  # end: URCap Installation Node
+  # begin: URCap Installation Node
+  #   Source: CoLightApp, 1.0.0, UniGripper
+  #   Type: Co/Light Confguration
+  colightDOVacuumPosition = "1"
+  colightDOReleasePosition = "1"
+  colightDIVacuum1Position = "0"
+  colightDIVacuum2Position = "1"
+  # end: URCap Installation Node
+  global Pallet_1_cnt_1=1
+  global Pallet_1_lct=1
+  global Pallet_1_lno=1
+  global Pallet_1_lno_1=1
+  global Pallet_1_sep= False 
+  global Pallet_1_tct=1
+  global home_p=p[-.593349015765, -.467215861262, .172367011315, .000464642384, .005913749476, 1.605331558288]
+  global home_q=[0.6127257347106934, -1.3337353032878418, 2.0700305143939417, -2.308678289453024, -1.5678914229022425, 0.5831131935119629]
+  global ApproachPick_p=p[-.595594138917, -.465240207277, -.075716930171, .000273361806, .003982537044, 1.588224020232]
+  global ApproachPick_q=[0.6101870536804199, -0.9411524099162598, 2.136453930531637, -2.7659574947752894, -1.5701811949359339, 0.5981431007385254]
+  global ToolActionPoint_p=p[-.595834869427, -.465457143667, -.125693240096, .000270427021, .004115481034, 1.588277006292]
+  global ToolActionPoint_q=[0.6102352142333984, -0.8498118680766602, 2.1254847685443323, -2.8464447460570277, -1.570540730153219, 0.5981431007385254]
+  global ExitPick_p=p[-.591566730103, -.481599644072, -.113777236343, .000286773965, .004181747765, 1.588234488060]
+  global ExitPick_q=[0.6327085494995117, -0.8621514600566407, 2.1092551390277308, -2.8179575405516566, -1.5705044905291956, 0.6206836700439453]
+  global ExitPick_2_p=p[-.585479818024, -.475048349593, -.075718463166, .000329962049, .004044337037, 1.588271474747]
+  global ExitPick_2_q=[0.6302900314331055, -0.9404471677592774, 2.13462478319277, -2.7649036846556605, -1.5702889601336878, 0.6182007789611816]
+  global WaypointA1_p=p[-.373922679866, -.560124313506, .236649532537, -.000120101250, .000201765673, 1.570719285268]
+  global WaypointA1_q=[0.9438228607177734, -1.4505275052836915, 2.0686991850482386, -2.1854692898192347, -1.5678914229022425, 0.948523998260498]
+  global WaypointA2_p=p[-.123885798000, -.661904692884, .366558899917, -.000081499532, .000049595083, 1.570723857781]
+  global WaypointA2_q=[1.3388075828552246, -1.4686482709697266, 1.8304427305804651, -1.9289761982359828, -1.5668605009662073, 1.3429145812988281]
+  global ApproachDropA1_p=p[.223993389107, -.821032508509, .366610408494, -.000088020198, -.000071263011, 1.570777618242]
+  global ApproachDropA1_q=[1.7636828422546387, -1.1070550245097657, 1.3556636015521448, -1.8157478771605433, -1.5662735144244593, 1.7677979469299316]
+  global AppoachDropA2_p=p[.223928865485, -.821299721223, .311312998604, -.000085928434, .000008326205, 1.570758953603]
+  global AppoachDropA2_q=[1.7635865211486816, -1.07901223123584, 1.418121639882223, -1.9062839947142542, -1.566681210194723, 1.7680249214172363]
+  global WaypointB1_p=p[-.690133663765, .254710885575, .163897302368, -.002995433969, .089766638454, 1.660128717258]
+  global WaypointB1_q=[-0.6637423674212855, -1.5067675870708008, 2.310791317616598, -2.3749448261656703, -1.4891045729266565, -0.7493842283831995]
+  global WaypoinB2_p=p[-.194943451979, .564628456957, .360807379715, -.000009143529, -.000059355961, 1.570855407182]
+  global WaypoinB2_q=[-1.795119587575094, -1.9031688175597132, 2.2193968931781214, -1.8833757839598597, -1.5670765081988733, -1.7916629950152796]
+  global ApproachDropB1_p=p[.204873880707, .577329330773, .359167663412, -.000041926035, -.000035475544, 1.570837705948]
+  global ApproachDropB1_q=[-2.4490979353534144, -1.6919766865172328, 2.065254513417379, -1.9404245815672816, -1.5671246687518519, -2.4452901522265833]
+  global ApproachDropB2_p=p[.204825402440, .577135874601, .304935428623, .000024475492, .000059325105, 1.570908678242]
+  global ApproachDropB2_q=[-2.449336830769674, -1.6477562389769496, 2.134695355092184, -2.053983827630514, -1.5674956480609339, -2.4452784697162073]
+  global Exit_p=p[-.157913399216, -.099155636153, 1.219035884992, 1.087469492300, 1.077970800977, 1.287015617303]
+  global Exit_q=[-3.034273256474762E-5, -2.4434334240355433, 1.570789639149801, -2.094407697717184, -1.5707080999957483, 1.1920928955078125E-5]
+  while (True):
+    $ 1 "Robot Program"
+    $ 2 "Pallet_1"
+    def Pallet_1_trans(pose):
+    return p[pose[0], pose[1], pose[2], 0, 0, 0]
+  end
+  def Pallet_1_rot(pose):
+  return p[0, 0, 0, pose[3], pose[4], pose[5]]
+  end
+  def Pallet_1_compute_pallet_waypoint(T_base_feature_taught, T_feature_referencePoint_taught, T_referencePoint_approach_taught, T_base_feature, T_base_referencePoint):
+  local trans_referencePoint_approach_in_feature_taught = pose_sub(Pallet_1_trans(pose_trans(T_feature_referencePoint_taught, T_referencePoint_approach_taught)), Pallet_1_trans(T_feature_referencePoint_taught))
+  local rot_referencePoint_approach_in_feature_taught = pose_trans(Pallet_1_rot(T_feature_referencePoint_taught), pose_trans(Pallet_1_rot(T_referencePoint_approach_taught), pose_inv(Pallet_1_rot(T_feature_referencePoint_taught))))
+  T_feature_referencePoint = pose_trans(pose_inv(T_base_feature), T_base_referencePoint)
+  rot_referencePoint_approach = pose_trans(pose_inv(Pallet_1_rot(T_feature_referencePoint)), pose_trans(rot_referencePoint_approach_in_feature_taught, Pallet_1_rot(T_feature_referencePoint)))
+  T_feature_approach = pose_trans(trans_referencePoint_approach_in_feature_taught, pose_trans(T_feature_referencePoint, rot_referencePoint_approach))
+  T_base_approach = pose_trans(T_base_feature, T_feature_approach)
+  return T_base_approach
+  end
+  Pallet_1_tct = 300
+  if (Pallet_1_cnt_1 > 300 or Pallet_1_cnt_1 < 1):
+    Pallet_1_cnt_1 = 1
+  end
+  $ 3 "Action before palletizing"
+  if (Pallet_1_cnt_1 == 1):
+    $ 4 "Set DO[6]=Off"
+    set_standard_digital_out(6, False)
+    $ 5 "Set DO[7]=Off"
+    set_standard_digital_out(7, False)
+    $ 6 "lineA≔ True "
+    global lineA=  True  
+    $ 7 "lineB≔ True "
+    global lineB=  True  
+    $ 8 "lineRequest≔ False "
+    global lineRequest=  False  
+    $ 9 "sideSelection≔ False "
+    global sideSelection=  False  
+    $ 10 "Set"
+    set_tcp(p[0.075,-0.1285,0.103,-3.1416,0.0,0.0])
+    $ 11 "If startup≟ False "
+    if (startup ==   False  ):
+      $ 12 "Wait CI[2]=LO"
+      while (get_configurable_digital_in(2) == True):
+        sync()
+      end
+    else:
+      $ 13 "Else"
+      $ 14 "startup≔ False "
+      global startup=  False  
+    end
+    $ 15 "Wait CI[2]=HI"
+    while (get_configurable_digital_in(2) == False):
+      sync()
+    end
+    $ 16 "MoveJ"
+    $ 17 "home"
+    movej(get_inverse_kin(home_p, qnear=home_q), a=0.5235987755982988, v=0.3490658503988659)
+  end
+  $ 18 "Patterns"
+  $ 19 "Grid_Pattern_1"
+  $ 24 "Layers"
+  if (Pallet_1_cnt_1 < 31):
+    Pallet_1_lno_1 = 1
+    Pallet_1_lct = Pallet_1_cnt_1
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.162*direction[0],0.162*direction[1],0.162*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 61):
+    Pallet_1_lno_1 = 2
+    Pallet_1_lct = Pallet_1_cnt_1 - 30
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.14400000000000002*direction[0],0.14400000000000002*direction[1],0.14400000000000002*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 91):
+    Pallet_1_lno_1 = 3
+    Pallet_1_lct = Pallet_1_cnt_1 - 60
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.126*direction[0],0.126*direction[1],0.126*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 121):
+    Pallet_1_lno_1 = 4
+    Pallet_1_lct = Pallet_1_cnt_1 - 90
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.108*direction[0],0.108*direction[1],0.108*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 151):
+    Pallet_1_lno_1 = 5
+    Pallet_1_lct = Pallet_1_cnt_1 - 120
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.09*direction[0],0.09*direction[1],0.09*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 181):
+    Pallet_1_lno_1 = 6
+    Pallet_1_lct = Pallet_1_cnt_1 - 150
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.07200000000000001*direction[0],0.07200000000000001*direction[1],0.07200000000000001*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 211):
+    Pallet_1_lno_1 = 7
+    Pallet_1_lct = Pallet_1_cnt_1 - 180
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.054*direction[0],0.054*direction[1],0.054*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 241):
+    Pallet_1_lno_1 = 8
+    Pallet_1_lct = Pallet_1_cnt_1 - 210
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.036000000000000004*direction[0],0.036000000000000004*direction[1],0.036000000000000004*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 271):
+    Pallet_1_lno_1 = 9
+    Pallet_1_lct = Pallet_1_cnt_1 - 240
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.018000000000000002*direction[0],0.018000000000000002*direction[1],0.018000000000000002*direction[2],0,0,0])
+  elif (Pallet_1_cnt_1 < 301):
+    Pallet_1_lno_1 = 10
+    Pallet_1_lct = Pallet_1_cnt_1 - 270
+    global CornerItem_1=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.595928239441, -.461841315740, -.118507677977, .000515553050, .005871721848, 1.615499294770]))
+    global CornerItem_2=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.987938238392, -.467048051957, -.116969185726, .000436179091, .004180335884, 1.606682421618]))
+    global CornerItem_3=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.997511393186, .117901044250, -.118768473348, .000561834258, .005988607098, 1.589261338292]))
+    global CornerItem_4=pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], p[-.603784464252, .124103987010, -.120568671034, .000028011597, .004050524762, 1.589271308472]))
+    Pallet_1_cnt_1_x = (Pallet_1_lct - 1) % 3
+    Pallet_1_cnt_1_y = floor((Pallet_1_lct - 1) / 3)
+    referencePoint = interpolate_pose(interpolate_pose(CornerItem_1, CornerItem_2, Pallet_1_cnt_1_x/2), interpolate_pose(CornerItem_4, CornerItem_3,Pallet_1_cnt_1_x/2), Pallet_1_cnt_1_y/9)
+    direction = pose_trans(p[0,0,0,Baseboard[3],Baseboard[4],Baseboard[5]], p[0,0,1,0,0,0])
+    referencePoint = pose_add (referencePoint,p[0.0*direction[0],0.0*direction[1],0.0*direction[2],0,0,0])
+  end
+  ApproachPick_p = Pallet_1_compute_pallet_waypoint(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102], pose_trans(pose_inv(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102]), p[-0.5957961512798707,-0.46539788584860664,-0.11877510713940027,2.4763965160656267E-4,0.004043860075619173,1.588217936724277]), p[5.134855784216796E-5,-8.64720626718718E-5,0.043058822107789885,-2.3100264554059678E-5,-5.5076705505461444E-5,6.075731613849389E-6], Baseboard, referencePoint)
+  ApproachPick_p = pose_trans(p[-0.5957961512798705,-0.46539788584860675,-0.11877510713940027,2.4763965160656544E-4,0.004043860075619192,1.5882179367242892], pose_trans(pose_inv(referencePoint), ApproachPick_p))
+  ToolActionPoint_p = Pallet_1_compute_pallet_waypoint(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102], pose_trans(pose_inv(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102]), p[-0.5957961512798707,-0.46539788584860664,-0.11877510713940027,2.4763965160656267E-4,0.004043860075619173,1.588217936724277]), p[-4.205948515967339E-5,2.0744305468611834E-5,-0.006918336134034947,6.013281284747817E-5,3.0552034219520685E-5,5.9168968737849284E-5], Baseboard, referencePoint)
+  ToolActionPoint_p = pose_trans(p[-0.5957961512798705,-0.46539788584860675,-0.11877510713940027,2.4763965160656544E-4,0.004043860075619192,1.5882179367242892], pose_trans(pose_inv(referencePoint), ToolActionPoint_p))
+  ExitPick_p = Pallet_1_compute_pallet_waypoint(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102], pose_trans(pose_inv(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102]), p[-0.5957961512798707,-0.46539788584860664,-0.11877510713940027,2.4763965160656267E-4,0.004043860075619173,1.588217936724277]), p[-0.01628488385073734,-0.003932814008488217,0.004969830728652133,1.1294173777839033E-4,6.175351252222421E-5,1.6736071866419747E-5], Baseboard, referencePoint)
+  ExitPick_p = pose_trans(p[-0.5957961512798705,-0.46539788584860675,-0.11877510713940027,2.4763965160656413E-4,0.0040438600756191765,1.5882179367242812], pose_trans(pose_inv(referencePoint), ExitPick_p))
+  ExitPick_2_p = Pallet_1_compute_pallet_waypoint(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102], pose_trans(pose_inv(p[-1.207599331210537,0.10689332210844901,-0.13632088664634942,-0.005910517794031765,3.6218461395439783E-4,-1.552310641380102]), p[-0.5957961512798707,-0.46539788584860664,-0.11877510713940027,2.4763965160656267E-4,0.004043860075619173,1.588217936724277]), p[-0.009931523707502832,-0.010028373425869819,0.043060763298575444,5.204607449719912E-5,-5.2379565903557916E-5,5.3678114813541714E-5], Baseboard, referencePoint)
+  ExitPick_2_p = pose_trans(p[-0.5957961512798705,-0.46539788584860675,-0.11877510713940027,2.4763965160656544E-4,0.004043860075619192,1.5882179367242892], pose_trans(pose_inv(referencePoint), ExitPick_2_p))
+  $ 25 "At Each Item"
+  $ 26 "Generated Movements"
+  $ 27 "MoveL"
+  $ 28 "ApproachPick"
+  movel(pose_trans(referencePoint, pose_trans(p[.454660094663, -.603484204933, .121518660398, -.000247639652, -.004043860076, -1.588217936724], ApproachPick_p)), a=1.2, v=0.25, r=0.014)
+  $ 29 "MoveL"
+  $ 30 "Wait lineRequest≟ True "
+  while (not(lineRequest ==   True  )):
+    sync()
+  end
+  $ 31 "ToolActionPoint"
+  movel(pose_trans(referencePoint, pose_trans(p[.454660094663, -.603484204933, .121518660398, -.000247639652, -.004043860076, -1.588217936724], ToolActionPoint_p)), a=1.2, v=0.25)
+  $ 32 "Tool action"
+  $ 33 "Set DO[0]=On"
+  set_standard_digital_out(0, True)
+  $ 34 "Wait: 0.3"
+  sleep(0.3)
+  $ 35 "MoveL"
+  $ 36 "ExitPick"
+  movel(pose_trans(referencePoint, pose_trans(p[.454660094663, -.603484204933, .121518660398, -.000247639652, -.004043860076, -1.588217936724], ExitPick_p)), a=0.5, v=0.75)
+  $ 37 "ExitPick_2"
+  movel(pose_trans(referencePoint, pose_trans(p[.454660094663, -.603484204933, .121518660398, -.000247639652, -.004043860076, -1.588217936724], ExitPick_2_p)), a=0.75, v=1.0)
+  $ 38 "If Pallet_1_lno≟10"
+  if (Pallet_1_lno == 10):
+    $ 39 "Set DO[6]=On"
+    set_standard_digital_out(6, True)
+  end
+  $ 40 "Loop sideSelection≟ False "
+  while (sideSelection ==   False  ):
+    $ 41 "If lineA≟ True "
+    if (lineA ==   True  ):
+      $ 42 "MoveL"
+      $ 43 "WaypointA1"
+      movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointA1_p)), a=1.0, v=1.5, r=0.0495)
+      $ 44 "WaypointA2"
+      movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointA2_p)), a=1.0, v=1.5, r=0.25)
+      $ 45 "ApproachDropA1"
+      movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], ApproachDropA1_p)), a=1.0, v=1.5, r=0.025)
+      $ 46 "AppoachDropA2"
+      movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], AppoachDropA2_p)), a=0.5, v=0.75)
+      $ 47 "Set DO[0]=Off"
+      set_standard_digital_out(0, False)
+      $ 48 "Set DO[4]=On"
+      set_standard_digital_out(4, True)
+      $ 49 "Wait: 0.5"
+      sleep(0.5)
+      $ 50 "ApproachDropA1"
+      movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], ApproachDropA1_p)), a=1.0, v=1.5, r=0.025)
+      $ 51 "Set DO[4]=Off"
+      set_standard_digital_out(4, False)
+      $ 52 "Set DO[1]=On"
+      set_standard_digital_out(1, True)
+      $ 53 "MoveJ"
+      $ 54 "WaypointA2"
+      movej(get_inverse_kin(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointA2_p)), qnear=WaypointA2_q), a=1.3962634015954636, v=1.0471975511965976, r=0.2495)
+      $ 55 "WaypointA1"
+      movej(get_inverse_kin(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointA1_p)), qnear=WaypointA1_q), a=1.3962634015954636, v=1.0471975511965976, r=0.05)
+      $ 56 "Set DO[1]=Off"
+      set_standard_digital_out(1, False)
+      $ 57 "sideSelection≔ True "
+      global sideSelection=  True  
+    else:
+      $ 58 "ElseIf lineB≟ True "
+      if (lineB ==   True  ):
+        $ 59 "MoveL"
+        $ 60 "WaypointB1"
+        movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointB1_p)), a=1.0, v=1.5, r=0.32339999999999997)
+        $ 61 "WaypoinB2"
+        movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypoinB2_p)), a=1.0, v=1.5, r=0.293)
+        $ 62 "ApproachDropB1"
+        movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], ApproachDropB1_p)), a=0.5, v=0.75, r=0.041)
+        $ 63 "ApproachDropB2"
+        movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], ApproachDropB2_p)), a=0.5, v=0.75)
+        $ 64 "Set DO[0]=Off"
+        set_standard_digital_out(0, False)
+        $ 65 "Set DO[5]=On"
+        set_standard_digital_out(5, True)
+        $ 66 "Wait: 0.5"
+        sleep(0.5)
+        $ 67 "ApproachDropB1"
+        movel(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], ApproachDropB1_p)), a=0.5, v=0.75)
+        $ 68 "Set DO[5]=Off"
+        set_standard_digital_out(5, False)
+        $ 69 "Set DO[1]=On"
+        set_standard_digital_out(1, True)
+        $ 70 "MoveJ"
+        $ 71 "WaypoinB2"
+        movej(get_inverse_kin(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypoinB2_p)), qnear=WaypoinB2_q), a=1.3962634015954636, v=1.0471975511965976, r=0.3)
+        $ 72 "WaypointB1"
+        movej(get_inverse_kin(pose_trans(Baseboard, pose_trans(p[.129677626699, 1.204858562031, .140731197046, .005910517794, -.000362184614, 1.552310641380], WaypointB1_p)), qnear=WaypointB1_q), a=1.3962634015954636, v=1.0471975511965976, r=0.05)
+        $ 73 "Set DO[1]=Off"
+        set_standard_digital_out(1, False)
+        $ 74 "sideSelection≔ True "
+        global sideSelection=  True  
+      else:
+        $ 75 "Else"
+        $ 76 "sideSelection≔ False "
+        global sideSelection=  False  
+        $ 77 "Wait: 0.5"
+        sleep(0.5)
+      end
+    end
+  end
+  $ 78 "sideSelection≔ False "
+  global sideSelection=  False  
+  $ 79 "Action after palletizing"
+  if (Pallet_1_cnt_1 == 300):
+    $ 80 "Set DO[7]=On"
+    set_standard_digital_out(7, True)
+    $ 81 "MoveJ"
+    $ 82 "Exit"
+    movej(get_inverse_kin(Exit_p, qnear=Exit_q), a=0.5235987755982988, v=0.3490658503988659)
+  end
+  Pallet_1_sep = False
+  if (Pallet_1_cnt_1 >= 300):
+    Pallet_1_cnt_1 = 1
+  else:
+    Pallet_1_cnt_1 = Pallet_1_cnt_1 + 1
+  end
+  end
+end
