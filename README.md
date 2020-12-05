@@ -27,8 +27,8 @@ Cells, Work-Related Musculoskeletal Disorders
 
 This repository holds:
  - **videos and images** of the manual and collaborative workstations for comparison;
- - *CoppeliaSim* **simulation scenes and models** are included;
- - and **UR script files** of the final installation.
+ - *CoppeliaSim* **simulation scenes and models**;
+ - **UR script files** of the final installation.
 
 ---
 
