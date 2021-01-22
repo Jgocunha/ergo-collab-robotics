@@ -37,13 +37,13 @@ This repository holds:
 To this project are annexed the following scientific contributions:
 
 **Articles:**
-- [*"Safety Requirements for the Design of Collaborative Robotic Workstations in Europe – A Review"*](https://link.springer.com/chapter/10.1007%2F978-3-030-50946-0_31) - ***Carlos Faria***, *Ana Colim, João G. Cunha, João Oliveira, Nelson Costa, Paula Carneiro, Sérgio Monteiro, Estela Bicho, Luís A. Rocha, Pedro Arezes* 
-- [*"Towards an Ergonomic Assessment Framework for Industrial Assembly Workstations - A Case Study"*](https://www.mdpi.com/2076-3417/10/9/3048) - ***Ana Colim***, *Carlos Faria, Ana Cristina Braga, Nuno Sousa, Luís Rocha, Paula Carneiro, Nélson Costa, Pedro Arezes* 
+- [*"Safety Requirements for the Design of Collaborative Robotic Workstations in Europe – A Review"*](https://link.springer.com/chapter/10.1007%2F978-3-030-50946-0_31) - ***Carlos Faria***, *Ana Colim, João G. Cunha, João Oliveira, Nelson Costa, Paula Carneiro, Sérgio Monteiro, Estela Bicho, Luís A. Rocha, Pedro Arezes*
+- [*"Towards an Ergonomic Assessment Framework for Industrial Assembly Workstations - A Case Study"*](https://www.mdpi.com/2076-3417/10/9/3048) - ***Ana Colim***, *Carlos Faria, Ana Cristina Braga, Nuno Sousa, Luís Rocha, Paula Carneiro, Nélson Costa, Pedro Arezes* 2020
 
 
 **Masters Dissertations:**
 
-- *"A Collaborative Work-Cell to Improve Worker Ergonomics and Productivity"* - ***João Gaspar Oliveira Cunha*** 
+- *"A Collaborative Work-Cell to Improve Worker Ergonomics and Productivity"* - ***João Gaspar Oliveira Cunha*** - University of Minho, Guimarães, Portugal
 
 ---
 
