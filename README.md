@@ -25,8 +25,11 @@ compared to the previous manual process.
 **Index Terms** — Collaborative Robots, Human-Centred Work-
 Cells, Work-Related Musculoskeletal Disorders
 
-**Authors** — ***João G. Cunha***, *Carlos Faria, Ana Colim, João Oliveira1, Luís A. Rocha, Márcio Silva, Sérgio Monteiro, Estela Bicho*
+**Authors** — ***João G. Cunha***, *Carlos Faria, Ana Colim, João Oliveira, Luís A. Rocha, Márcio Silva, Sérgio Monteiro, Estela Bicho*
 
+---
+
+## Contents
 
 This repository holds:
  - **Videos and images** of the manual and collaborative workstations for comparison;
