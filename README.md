@@ -1,6 +1,6 @@
 # A Collaborative Work-Cell to Improve Worker Ergonomics and Productivity
 
-**Abstract** - As manufacturing enters an era of mass customization, new technological solutions with more versatility and flexibility are brought to the industry. Collaborative robots, or COBOTs, can now safely work near humans, a key advantage that enables highly-flexible production and opens the possibility to tackle the incidence of occupational health problems. 
+**Abstract** — As manufacturing enters an era of mass customization, new technological solutions with more versatility and flexibility are brought to the industry. Collaborative robots, or COBOTs, can now safely work near humans, a key advantage that enables highly-flexible production and opens the possibility to tackle the incidence of occupational health problems. 
 
 Although the advantages of collaborative robotic manufacturing have been extensively praised, adapting a manual production workstation to integrate robotic technology is far from being a linear and easy process. In this project, we explore this delicate **balance between the ergonomic, production, and safety requirements in the design of a new collaborative cell**. We explain the different steps of this digital transformation process and the thought process behind human-robot task allocation to maximize the collaborative robot efficiency while improving the work conditions.
 
