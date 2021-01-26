@@ -13,7 +13,7 @@ Results show a **significant reduction in the global ergonomic risk** score asso
 ## Contents
 
 This repository holds:
- - **Videos and images** of the manual and collaborative workstations for comparison @["Multimedia"](https://github.com/Jgocunha/ergo-collab-robotics/tree/main/Multimedia);
+ - **Videos and images** of the manual and collaborative workstations for comparison @[*Multimedia*](https://github.com/Jgocunha/ergo-collab-robotics/tree/main/Multimedia);
  - *CoppeliaSim* **simulation scenes and models** @[*CoppeliaSim*](https://github.com/Jgocunha/ergo-collab-robotics/tree/main/CoppeliaSim).
 ---
 
