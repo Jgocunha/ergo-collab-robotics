@@ -23,14 +23,14 @@ To this project are associated the following scientific contributions:
 
 **Articles:**
 - [*"From Handcrafting to a Certified and Ergonomic Collaborative Workstation: the Digital Transformation Process"*](http://www.mech.nagoya-u.ac.jp/asi/isr2021/index.html) - ***João G. Cunha***, *Carlos Faria, Ana Colim, João Oliveira, Luís A. Rocha, Márcio Silva, Sérgio Monteiro, Estela Bicho* - IEEE International Conference On Intelligence And Safety 2021 (Submitted and accepted)
-- [*"Physical Ergonomics Improvement and Safe Design of an Assembly Workstation with Collaborative Robotics"*](https://www.mdpi.com/journal/safety) - ***Ana Colim***, *Carlos Faria, João Cunha, João Oliveira, Nuno Sousa, Luís Rocha* - Safety 2021 (Submitted and under-review)
+- [*"Physical Ergonomics Improvement and Safe Design of an Assembly Workstation with Collaborative Robotics"*](https://www.mdpi.com/journal/safety) - ***Ana Colim***, *Carlos Faria, João G. Cunha, João Oliveira, Nuno Sousa, Luís Rocha* - Safety 2021 (Submitted and under-review)
 - [*"Safety Requirements for the Design of Collaborative Robotic Workstations in Europe – A Review"*](https://link.springer.com/chapter/10.1007%2F978-3-030-50946-0_31) - ***Carlos Faria***, *Ana Colim, João G. Cunha, João Oliveira, Nelson Costa, Paula Carneiro, Sérgio Monteiro, Estela Bicho, Luís A. Rocha, Pedro Arezes* - Advances in Safety Management and Human Performance 2020
 - [*"Towards an Ergonomic Assessment Framework for Industrial Assembly Workstations - A Case Study"*](https://www.mdpi.com/2076-3417/10/9/3048) - ***Ana Colim***, *Carlos Faria, Ana Cristina Braga, Nuno Sousa, Luís Rocha, Paula Carneiro, Nélson Costa, Pedro Arezes* - Applied Sciences 2020
 
 
 **Masters Dissertations:**
 
-- *"A Collaborative Work-Cell to Improve Worker Ergonomics and Productivity"* - ***João Gaspar Oliveira Cunha*** - University of Minho, Guimarães, Portugal
+- [*"A Collaborative Work-Cell to Improve Worker Ergonomics and Productivity"*](http://cp.eng.uminho.pt/provaBODY.aspx?id=4933) - ***João Gaspar Oliveira Cunha*** - University of Minho, Guimarães, Portugal
 
 ---
 
